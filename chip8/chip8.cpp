@@ -43,6 +43,28 @@ static void loadRom(chip8* machine) {
 
 int main()
 {
+    al_init();
+    ALLEGRO_DISPLAY* disp = al_create_display(64, 32);
+    ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
+    al_resize_display(disp, 640, 320); 
+    al_register_event_source(queue, al_get_display_event_source(disp));
+
+    while (1) {
+        ALLEGRO_EVENT ev;
+        al_wait_for_event(queue, &ev);
+
+        if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+            break;
+        }
+
+        al_clear_to_color(al_map_rgb(0, 0, 0));
+        al_flip_display();
+    }
+
+    al_destroy_event_queue(queue);
+    al_destroy_display(disp);
+
+    /*
     chip8 chip;
     initMachine(&chip);
     loadRom(&chip);
@@ -218,7 +240,7 @@ int main()
                 break;
         }
     }
-
+    */
     return 0;
 }
 
