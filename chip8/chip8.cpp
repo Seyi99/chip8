@@ -160,7 +160,7 @@ int main()
                 break;
             case 0xB:
                 printf("JP V0, %x\n", nnn);
-                chip.pc = chip.v[0] + nnn;
+                chip.pc = (chip.v[0] + nnn) & 0xFFF;
                 break;
             case 0xc:
                 printf("RND V%x, %x\n", x, kk);
