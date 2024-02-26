@@ -23,12 +23,12 @@ static void initMachine(chip8* machine) {
     machine->pc = 0x200;
     machine->i = machine->st = machine->dt = machine->sp = 0;
     memset(machine->memory, 0, MEMSIZE);
-    memset(machine->stack, 0, STACKSIZE);
+    memset(machine->stack, 0, 32);
     memset(machine->v, 0, 16);
 }
 
 static void loadRom(chip8* machine) {
-    std::ifstream rom("/roms/tetris.ch8", std::ios::binary);
+    std::ifstream rom("C:/Users/Sergio/source/repos/chip8/chip8/roms/tetris.ch8", std::ios::binary);
 
     if (!rom.good()) {
         std::cout << "Cannot open ROM file!" << std::endl;
